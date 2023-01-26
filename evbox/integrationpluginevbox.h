@@ -33,8 +33,11 @@
 
 #include "integrations/integrationplugin.h"
 
+#include "evboxport.h"
+
 #include "extern-plugininfo.h"
 
+#include <plugintimer.h>
 #include <QTimer>
 
 class QSerialPort;
@@ -47,37 +50,23 @@ class IntegrationPluginEVBox: public IntegrationPlugin
     Q_INTERFACES(IntegrationPlugin)
 
 public:
-    enum Command {
-        Command68 = 68,
-        Command69 = 69
-    };
-    Q_ENUM(Command)
-
     explicit IntegrationPluginEVBox();
     ~IntegrationPluginEVBox();
 
     void discoverThings(ThingDiscoveryInfo *info) override;
     void setupThing(ThingSetupInfo *info) override;
+    void postSetupThing(Thing *thing) override;
     void thingRemoved(Thing *thing) override;
     void executeAction(ThingActionInfo *info) override;
 
 private:
-    bool sendCommand(Thing *thing, Command command, quint16 maxChargingCurrent);
-
-    QByteArray createChecksum(const QByteArray &data) const;
-
-    void processInputBuffer(Thing *thing);
-    void processDataPacket(Thing *thing, const QByteArray &packet);
+    void finishPendingAction(Thing *thing);
 
 private:
-    QHash<Thing*, QSerialPort*> m_serialPorts;
-    QHash<Thing*, ThingSetupInfo*> m_pendingSetups;
+    QHash<QString, EVBoxPort*> m_ports;
     QHash<Thing*, QList<ThingActionInfo*>> m_pendingActions;
-
-    QHash<Thing*, QByteArray> m_inputBuffers;
-
-    QHash<Thing*, QTimer*> m_timers;
     QHash<Thing*, bool> m_waitingForResponses;
+    PluginTimer *m_timer = nullptr;
 };
 
 #endif // INTEGRATIONPLUGINEVBOX_H
