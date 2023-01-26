@@ -1,3 +1,25 @@
+nymea-plugins (1.7.0) jammy; urgency=medium
+
+  [ Michael Zanetti ]
+  * WIP: New Plugin: nymea owlets
+
+  [ Simon Stürz ]
+  * shelly: debug experimental
+
+  [ Jenkins ]
+  * Bump cryptography from 37.0.0 to 38.0.3 in /bimmerconnected
+  * Bump setuptools from 54.1.1 to 65.5.1 in /neatobotvac
+  * Bump setuptools from 62.1.0 to 65.5.1 in /daikinairco
+  * Bump setuptools from 62.1.0 to 65.5.1 in /bimmerconnected
+
+  [ Michael Zanetti ]
+  * Netatmo: Add min/max values for co2 sensors
+  * Add support for Shelly Plus 2PM
+  * EVBox: Rework plugin to allow addressing multiple boxes on same bus
+  * WIP: go-e: Add possibility to control charging phases
+
+ -- jenkins <developer@nymea.io>  Thu, 26 Jan 2023 20:53:45 +0100
+
 nymea-plugins (1.6.2) jammy; urgency=medium
 
   [ Michael Zanetti ]
