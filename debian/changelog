@@ -1,5 +1,10 @@
 nymea-plugins (1.6.2) jammy; urgency=medium
 
+
+ -- jenkins <developer@nymea.io>  Thu, 26 Jan 2023 16:30:50 +0100
+
+nymea-plugins (1.6.2) jammy; urgency=medium
+
   [ Michael Zanetti ]
   * go-e: Improve error messages
   * Update python deps to certifi
